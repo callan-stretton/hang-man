@@ -6,7 +6,9 @@ namespace hangman
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string wordToGuess = "frog";
+            int playerTurnCount = 0;
+            Console.WriteLine("Let's play Hangman! Guess the word.");
         }
     }
 }
