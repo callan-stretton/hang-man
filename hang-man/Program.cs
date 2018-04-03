@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text; // used for the StringBuilder
+using System.Linq;
 
 namespace hangman
 {
@@ -8,20 +9,25 @@ namespace hangman
         public static void Main(string[] args)
         {
             string wordToGuess = "frog";
-            char[] wordAsArray = wordToGuess.ToCharArray();
+            //char[] wordAsArray = wordToGuess.ToCharArray();
+            var wordAsArray = wordToGuess.ToCharArray().Select(c => c.ToString()).ToArray();
+            string firstGuess = "o";
+            //int firstGuessIdx = Array.IndexOf(wordAsArray, firstGuess);
+            //Console.WriteLine("firstGuessIndx = " + firstGuessIdx);
+            int myIndex = Array.IndexOf(wordAsArray, firstGuess);
+            Console.WriteLine("The first occurrence of \"{0}\" is at index {1}.", firstGuess, myIndex);
             Console.WriteLine(string.Join(",", wordAsArray)); // prints each item of array to view in console (by joining with ,)
             string[] workingArray = new string[0];
             initialiseBlankWord(wordToGuess);
             //int playerTurnCount = 0;
             Console.WriteLine("Let's play Hangman! Guess the word.");
             //string hiddenWord = 
+            // myArray.SetValue( "fox", 3 );
         }
         static public string initialiseBlankWord(string word)
         {
-            string test = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
-
+            string fullBlankWord = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
             char[] fullBlankWordArr = fullBlankWord.ToCharArray();
-            Console.WriteLine("Test = " + test);
             Console.WriteLine(fullBlankWord);
             Console.WriteLine(string.Join(" ", fullBlankWordArr));
             return fullBlankWord;
