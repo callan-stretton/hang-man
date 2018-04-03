@@ -10,6 +10,7 @@ namespace hangman
         {
             string wordToGuess = "FROG";
             var wordAsArray = wordToGuess.ToCharArray().Select(c => c.ToString()).ToArray();
+            int playerTurnCount = 0;
             Console.WriteLine("What's your letter?");
             string firstGuess = Console.ReadLine().ToUpper();
             //string firstGuess = "o";
@@ -17,6 +18,8 @@ namespace hangman
             if (myIndex == -1)
             {
                 Console.WriteLine("Run wrong letter function");
+                playerTurnCount = playerTurnCount - 1;
+                Console.WriteLine(playerTurnCount + "Turns left");
             }
             else{
                 Console.WriteLine("Run correct letter function");
@@ -25,7 +28,6 @@ namespace hangman
             Console.WriteLine(string.Join(",", wordAsArray)); // prints each item of array to view in console (by joining with ,)
             string[] workingArray = new string[0];
             initialiseBlankWord(wordToGuess);
-            //int playerTurnCount = 0;
             //string hiddenWord = 
             // myArray.SetValue( "fox", 3 );
         }
