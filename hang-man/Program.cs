@@ -8,19 +8,24 @@ namespace hangman
     {
         public static void Main(string[] args)
         {
-            string wordToGuess = "frog";
-            //char[] wordAsArray = wordToGuess.ToCharArray();
+            string wordToGuess = "FROG";
             var wordAsArray = wordToGuess.ToCharArray().Select(c => c.ToString()).ToArray();
-            string firstGuess = "o";
-            //int firstGuessIdx = Array.IndexOf(wordAsArray, firstGuess);
-            //Console.WriteLine("firstGuessIndx = " + firstGuessIdx);
+            Console.WriteLine("What's your letter?");
+            string firstGuess = Console.ReadLine().ToUpper();
+            //string firstGuess = "o";
             int myIndex = Array.IndexOf(wordAsArray, firstGuess);
-            Console.WriteLine("The first occurrence of \"{0}\" is at index {1}.", firstGuess, myIndex);
+            if (myIndex == -1)
+            {
+                Console.WriteLine("Run wrong letter function");
+            }
+            else{
+                Console.WriteLine("Run correct letter function");
+            }
+            Console.WriteLine("The first occurrence of " + firstGuess + " is at index " + myIndex);
             Console.WriteLine(string.Join(",", wordAsArray)); // prints each item of array to view in console (by joining with ,)
             string[] workingArray = new string[0];
             initialiseBlankWord(wordToGuess);
             //int playerTurnCount = 0;
-            Console.WriteLine("Let's play Hangman! Guess the word.");
             //string hiddenWord = 
             // myArray.SetValue( "fox", 3 );
         }
