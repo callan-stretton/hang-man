@@ -19,18 +19,14 @@ namespace hangman
         static public string displayWord(string word)
         {
             string updatedWord = word + " is working";
-            string blankWord = "";
-            StringBuilder sb = new StringBuilder();
 
-            sb.Append("hello");
-
-            sb.Insert("  ", 0);
-
-            string str1 = sb.ToString();
+            StringBuilder blankWord = new StringBuilder(); // blank starting point
             for (int i = 0; i < word.Length; i++)
             {
-                blankWord + "_";
+                blankWord.Append("_");
             }
+            string initialBlankWord = blankWord.ToString();
+            Console.WriteLine(initialBlankWord);
             return initialBlankWord;
         }
     }
