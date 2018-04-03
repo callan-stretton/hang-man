@@ -11,23 +11,20 @@ namespace hangman
             char[] wordAsArray = wordToGuess.ToCharArray();
             Console.WriteLine(string.Join(",", wordAsArray)); // prints each item of array to view in console (by joining with ,)
             string[] workingArray = new string[0];
-            displayWord(wordToGuess);
+            initialiseBlankWord(wordToGuess);
             //int playerTurnCount = 0;
             Console.WriteLine("Let's play Hangman! Guess the word.");
             //string hiddenWord = 
         }
-        static public string displayWord(string word)
+        static public string initialiseBlankWord(string word)
         {
-            string updatedWord = word + " is working";
+            string test = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
 
-            StringBuilder blankWord = new StringBuilder(); // blank starting point
-            for (int i = 0; i < word.Length; i++)
-            {
-                blankWord.Append("_");
-            }
-            string initialBlankWord = blankWord.ToString();
-            Console.WriteLine(initialBlankWord);
-            return initialBlankWord;
+            char[] fullBlankWordArr = fullBlankWord.ToCharArray();
+            Console.WriteLine("Test = " + test);
+            Console.WriteLine(fullBlankWord);
+            Console.WriteLine(string.Join(" ", fullBlankWordArr));
+            return fullBlankWord;
         }
     }
 }
@@ -46,5 +43,16 @@ namespace hangman
 // Add this character to a guessedChars array
 // Deduct 1 from the playerTurnCount counter
 
-
 // On each round print hiddenWord, attempts left 
+// Things to look out for: to lower case
+
+
+
+//Alternate long version of making blank word: 
+//StringBuilder buildingBlankWord = new StringBuilder(); // blank starting point as no string already in parenthesis
+
+//for (int i = 0; i<word.Length; i++)
+//{
+//buildingBlankWord.Append("_"); // adds a _ to the end of the StringBuilder
+//}
+//string fullBlankWord = buildingBlankWord.ToString(); // converting back down to simple string
