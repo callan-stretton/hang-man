@@ -12,7 +12,9 @@ namespace hangman
             string[] wordAsArray = wordToGuess.ToCharArray().Select(c => c.ToString()).ToArray();
             string[] workingWord = InitialiseBlankWord(wordToGuess);
             Console.WriteLine(string.Join(" ", workingWord));
-            int playerTurnCount = 0;
+            int playerTurnCount = 7;
+            bool gameOver = IsItGameOver(playerTurnCount);
+
             Console.WriteLine("What's your letter?");
             string firstGuess = Console.ReadLine().ToUpper();
             int myIndex = Array.IndexOf(wordAsArray, firstGuess);
@@ -20,7 +22,7 @@ namespace hangman
             {
                 Console.WriteLine("Run wrong letter function");
                 playerTurnCount = playerTurnCount - 1;
-                Console.WriteLine(playerTurnCount + "Turns left");
+                Console.WriteLine(playerTurnCount + " Turns left");
             }
             else
             {
@@ -30,8 +32,6 @@ namespace hangman
                 workingWord.SetValue(firstGuess, myIndex);
                 Console.WriteLine(string.Join(" ", workingWord));
             }
-            //Console.WriteLine(string.Join(",", wordAsArray)); prints each item of array to view in console (by joining with ,)
-            //string[] workingArray = new string[0];
         }
         public static string[] InitialiseBlankWord(string word)
         {
@@ -39,9 +39,15 @@ namespace hangman
             string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
             return fullBlankWordArr;
         }
-        public static void ProcessLetter ()
+        public static bool IsItGameOver (int playerTurnCount)
         {
-            
+            if (playerTurnCount <= 0)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
         }
     }
 }
