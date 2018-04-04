@@ -10,7 +10,7 @@ namespace hangman
         {
             string wordToGuess = "FROG";
             string[] wordAsArray = wordToGuess.ToCharArray().Select(c => c.ToString()).ToArray();
-            string[] workingWord = initialiseBlankWord(wordToGuess);
+            string[] workingWord = InitialiseBlankWord(wordToGuess);
             Console.WriteLine(string.Join(" ", workingWord));
             int playerTurnCount = 0;
             Console.WriteLine("What's your letter?");
@@ -32,14 +32,16 @@ namespace hangman
             }
             //Console.WriteLine(string.Join(",", wordAsArray)); prints each item of array to view in console (by joining with ,)
             //string[] workingArray = new string[0];
-            // myArray.SetValue( "fox", 3 );
         }
-        static public string[] initialiseBlankWord(string word)
+        public static string[] InitialiseBlankWord(string word)
         {
             string fullBlankWord = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
             string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
-            //Console.WriteLine(fullBlankWord);
             return fullBlankWordArr;
+        }
+        public static void ProcessLetter ()
+        {
+            
         }
     }
 }
