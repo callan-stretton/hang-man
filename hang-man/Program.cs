@@ -13,7 +13,11 @@ namespace hangman
             string[] workingWord = InitialiseBlankWord(wordToGuess);
             Console.WriteLine(string.Join(" ", workingWord));
             int playerTurnCount = 7;
-            bool gameOver = IsItGameOver(playerTurnCount);
+            bool gameOver = false;
+
+            //while (gameOver == false) {
+            //    IsItGameOver(playerTurnCount);
+            //}
 
             Console.WriteLine("What's your letter?");
             string firstGuess = Console.ReadLine().ToUpper();
