@@ -9,35 +9,49 @@ namespace hangman
         public static void Main(string[] args)
         {
             string wordToGuess = "FROG";
-            var wordAsArray = wordToGuess.ToCharArray().Select(c => c.ToString()).ToArray();
-            int playerTurnCount = 0;
+            string[] wordAsArray = wordToGuess.ToCharArray().Select(c => c.ToString()).ToArray();
+            string[] workingWord = InitialiseBlankWord(wordToGuess);
+            Console.WriteLine(string.Join(" ", workingWord));
+            int playerTurnCount = 7;
+            bool gameOver = false;
+
+            //while (gameOver == false) {
+            //    IsItGameOver(playerTurnCount);
+            //}
+
             Console.WriteLine("What's your letter?");
             string firstGuess = Console.ReadLine().ToUpper();
-            //string firstGuess = "o";
             int myIndex = Array.IndexOf(wordAsArray, firstGuess);
             if (myIndex == -1)
             {
                 Console.WriteLine("Run wrong letter function");
                 playerTurnCount = playerTurnCount - 1;
-                Console.WriteLine(playerTurnCount + "Turns left");
+                Console.WriteLine(playerTurnCount + " Turns left");
             }
-            else{
+            else
+            {
                 Console.WriteLine("Run correct letter function");
+                Console.WriteLine("Yes " + firstGuess + " is a letter!");
+                Console.WriteLine("The first occurrence of " + firstGuess + " is at index " + myIndex);
+                workingWord.SetValue(firstGuess, myIndex);
+                Console.WriteLine(string.Join(" ", workingWord));
             }
-            Console.WriteLine("The first occurrence of " + firstGuess + " is at index " + myIndex);
-            Console.WriteLine(string.Join(",", wordAsArray)); // prints each item of array to view in console (by joining with ,)
-            string[] workingArray = new string[0];
-            initialiseBlankWord(wordToGuess);
-            //string hiddenWord = 
-            // myArray.SetValue( "fox", 3 );
         }
-        static public string initialiseBlankWord(string word)
+        public static string[] InitialiseBlankWord(string word)
         {
             string fullBlankWord = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
-            char[] fullBlankWordArr = fullBlankWord.ToCharArray();
-            Console.WriteLine(fullBlankWord);
-            Console.WriteLine(string.Join(" ", fullBlankWordArr));
-            return fullBlankWord;
+            string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
+            return fullBlankWordArr;
+        }
+        public static bool IsItGameOver (int playerTurnCount)
+        {
+            if (playerTurnCount <= 0)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
         }
     }
 }
