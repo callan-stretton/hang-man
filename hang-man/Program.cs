@@ -18,6 +18,10 @@ namespace hangman
             //while (gameOver == false) {
             //    IsItGameOver(playerTurnCount);
             //}
+            Console.WriteLine("gameOver = " + gameOver);
+            IsItGameOver(ref gameOver);
+            Console.WriteLine("Running IsItGameOver");
+            Console.WriteLine("gameOver = " + gameOver);
 
             Console.WriteLine("What's your letter?");
             string firstGuess = Console.ReadLine().ToUpper();
@@ -43,14 +47,15 @@ namespace hangman
             string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
             return fullBlankWordArr;
         }
-        public static bool IsItGameOver (int playerTurnCount)
+        public static bool IsItGameOver (ref bool gameOver)
         {
-            if (playerTurnCount <= 0)
+            if (3 >= 0)
             {
-                return true;
+                return gameOver = true;
             }
-            else{
-                return false;
+            else
+            {
+                return gameOver = false;
             }
         }
     }
