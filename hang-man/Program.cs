@@ -15,14 +15,22 @@ namespace hangman
             int playerTurnCount = 7;
             bool gameOver = false;
 
-            //while (gameOver == false) {
-            //    IsItGameOver(playerTurnCount);
-            //}
-            Console.WriteLine("gameOver = " + gameOver);
-            IsItGameOver(ref gameOver);
-            Console.WriteLine("Running IsItGameOver");
-            Console.WriteLine("gameOver = " + gameOver);
+            while (gameOver == false) {
+                IsItGameOver(playerTurnCount, ref gameOver);
+                CheckLetter();
+            }
 
+
+        }
+        public static string[] InitialiseBlankWord(string word)
+        {
+            string fullBlankWord = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
+            string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
+            return fullBlankWordArr;
+        }
+
+        public static void CheckLetter ()
+        {
             Console.WriteLine("What's your letter?");
             string firstGuess = Console.ReadLine().ToUpper();
             int myIndex = Array.IndexOf(wordAsArray, firstGuess);
@@ -41,16 +49,12 @@ namespace hangman
                 Console.WriteLine(string.Join(" ", workingWord));
             }
         }
-        public static string[] InitialiseBlankWord(string word)
+
+        public static bool IsItGameOver (int playerTurnCount, ref bool gameOver)
         {
-            string fullBlankWord = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
-            string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
-            return fullBlankWordArr;
-        }
-        public static bool IsItGameOver (ref bool gameOver)
-        {
-            if (3 >= 0)
+            if (playerTurnCount <= 0)
             {
+                Console.WriteLine("Game Over!");
                 return gameOver = true;
             }
             else
