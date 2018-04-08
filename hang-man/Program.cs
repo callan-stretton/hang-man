@@ -17,7 +17,7 @@ namespace hangman
 
             while (gameOver == false) {
                 IsItGameOver(playerTurnCount, ref gameOver);
-                CheckLetter();
+                CheckLetter(wordAsArray, ref playerTurnCount, ref workingWord);
             }
 
 
@@ -29,7 +29,7 @@ namespace hangman
             return fullBlankWordArr;
         }
 
-        public static void CheckLetter ()
+        public static void CheckLetter (string[] wordAsArray, ref int playerTurnCount, ref string[] workingWord)
         {
             Console.WriteLine("What's your letter?");
             string firstGuess = Console.ReadLine().ToUpper();
