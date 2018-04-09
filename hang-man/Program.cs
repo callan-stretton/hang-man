@@ -14,8 +14,16 @@ namespace hangman
             Console.WriteLine(string.Join(" ", workingWord));
             int playerTurnCount = 7;
             bool gameOver = false;
+            int wordGuessed = Array.IndexOf(workingWord, "_");  // if equal to -1 you figured it out
+            Console.WriteLine(wordGuessed);
 
-            while (gameOver == false) {
+            //while (gameOver == false) {
+            //    IsItGameOver(playerTurnCount, ref gameOver);
+            //    CheckLetter(wordAsArray, ref playerTurnCount, ref workingWord);
+            //}
+
+            while (playerTurnCount > 0 || wordGuessed == -1)
+            {
                 IsItGameOver(playerTurnCount, ref gameOver);
                 CheckLetter(wordAsArray, ref playerTurnCount, ref workingWord);
             }
@@ -31,7 +39,7 @@ namespace hangman
 
         public static void CheckLetter (string[] wordAsArray, ref int playerTurnCount, ref string[] workingWord)
         {
-            Console.WriteLine("What's your letter?");
+            Console.WriteLine("Guess a letter?");
             string firstGuess = Console.ReadLine().ToUpper();
             int myIndex = Array.IndexOf(wordAsArray, firstGuess);
             if (myIndex == -1)
@@ -82,6 +90,8 @@ namespace hangman
 // On each round print hiddenWord, attempts left 
 // Things to look out for: to lower case
 
+// Do you need a function to determine whether it's GameOver?
+// While playerTurnCount > 0 OR workingWord does not contain _ underscores 
 
 
 //Alternate long version of making blank word: 
