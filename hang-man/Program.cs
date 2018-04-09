@@ -14,12 +14,32 @@ namespace hangman
             Console.WriteLine(string.Join(" ", workingWord));
             int playerTurnCount = 7;
             bool gameOver = false;
+            int wordGuessed = Array.IndexOf(workingWord, "_");  // if equal to -1 you figured it out
+            Console.WriteLine(wordGuessed);
 
             //while (gameOver == false) {
-            //    IsItGameOver(playerTurnCount);
+            //    IsItGameOver(playerTurnCount, ref gameOver);
+            //    CheckLetter(wordAsArray, ref playerTurnCount, ref workingWord);
             //}
 
-            Console.WriteLine("What's your letter?");
+            while (playerTurnCount > 0 || wordGuessed == -1)
+            {
+                IsItGameOver(playerTurnCount, ref gameOver);
+                CheckLetter(wordAsArray, ref playerTurnCount, ref workingWord);
+            }
+
+
+        }
+        public static string[] InitialiseBlankWord(string word)
+        {
+            string fullBlankWord = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
+            string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
+            return fullBlankWordArr;
+        }
+
+        public static void CheckLetter (string[] wordAsArray, ref int playerTurnCount, ref string[] workingWord)
+        {
+            Console.WriteLine("Guess a letter?");
             string firstGuess = Console.ReadLine().ToUpper();
             int myIndex = Array.IndexOf(wordAsArray, firstGuess);
             if (myIndex == -1)
@@ -37,20 +57,17 @@ namespace hangman
                 Console.WriteLine(string.Join(" ", workingWord));
             }
         }
-        public static string[] InitialiseBlankWord(string word)
-        {
-            string fullBlankWord = new String('_', word.Length); // initialises a new string with character by word.Length amount of times
-            string[] fullBlankWordArr = fullBlankWord.ToCharArray().Select(c => c.ToString()).ToArray();
-            return fullBlankWordArr;
-        }
-        public static bool IsItGameOver (int playerTurnCount)
+
+        public static bool IsItGameOver (int playerTurnCount, ref bool gameOver)
         {
             if (playerTurnCount <= 0)
             {
-                return true;
+                Console.WriteLine("Game Over!");
+                return gameOver = true;
             }
-            else{
-                return false;
+            else
+            {
+                return gameOver = false;
             }
         }
     }
@@ -73,6 +90,8 @@ namespace hangman
 // On each round print hiddenWord, attempts left 
 // Things to look out for: to lower case
 
+// Do you need a function to determine whether it's GameOver?
+// While playerTurnCount > 0 OR workingWord does not contain _ underscores 
 
 
 //Alternate long version of making blank word: 
